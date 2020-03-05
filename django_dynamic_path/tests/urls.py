@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 from django.urls import path, include
 
 from django_dynamic_path import DynamicPath
@@ -7,6 +7,9 @@ def confirm_args(request, *args, **kwargs):
     if len(args) == 2 and args[0] == 'a' and kwargs['b'] == 2 :
         return HttpResponse()
     raise RuntimeError('did not get expected args/kwargs')
+
+def do_nothing(request, *args, **kwargs):
+    pass
 
 def interact(path):
     import code; code.interact(local=locals())
@@ -22,6 +25,11 @@ urlpatterns = [
     DynamicPath(
         lambda path: path == 'baz/' and (('a', 'b'), {'a': 1, 'b': 2}),
         confirm_args,
+    ),
+
+    DynamicPath(
+        lambda path: path == 'list_args/' and ([1, 2], {}),
+        do_nothing,
     ),
 
     path('included/', include([DynamicPath(

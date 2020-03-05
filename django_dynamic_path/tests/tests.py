@@ -1,5 +1,5 @@
 from django.test import TestCase, override_settings
-from django.urls import reverse
+from django.urls import resolve, reverse
 
 @override_settings(ROOT_URLCONF='django_dynamic_path.tests.urls')
 class DynamicPathTestCase(TestCase):
@@ -26,3 +26,7 @@ class DynamicPathTestCase(TestCase):
         self.assertEqual(reverse('path_before_name'), '/path_before/')
     def test_path_after_with_params_can_be_reversed(self):
         self.assertEqual(reverse('path_after_name', kwargs=dict(value='BAZ')), '/path_after/BAZ/')
+
+    def test_can_handle_list_args_and_empty_kwargs(self):
+        r = resolve('/list_args/')
+        self.assertEqual(r.args, (1,2))
