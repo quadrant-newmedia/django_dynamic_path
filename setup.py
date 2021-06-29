@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django_dynamic_path",
-    version="0.0.4",
+    version="0.0.5",
     author="Alex Fischer",
     author_email="alex@quadrant.net",
     description="A django path() replacement enabling truly dynamic urls",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    # url="TODO",
+    url="https://github.com/quadrant-newmedia/django_dynamic_path",
     packages=['django_dynamic_path', 'django_dynamic_path.tests'],
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -19,5 +19,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires=["Django>=2.2,<3.1"],
+    install_requires=["Django>=2.2,<3.3"],
 )
