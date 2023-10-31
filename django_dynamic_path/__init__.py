@@ -21,9 +21,13 @@ class DynamicPath(URLPattern):
             # This only occurs in certain situations.
             # Lets cast to tuple, in case resolver_func returns list/iterable
             args = tuple(args)
-            return ResolverMatch(
+
+            match = ResolverMatch(
                 self.view_func,
                 tuple(args),
                 kwargs,
                 route='_DYNAMIC_PATH_ROUTE_',
             )
+            # Django 4 requires this to work
+            match.extra_kwargs = {}
+            return match

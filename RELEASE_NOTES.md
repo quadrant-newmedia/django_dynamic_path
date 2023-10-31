@@ -1,3 +1,6 @@
+## 0.1.0
+Add django 4 support
+
 ### 0.0.5
 Add explicit django 3.1, 3.2 support
 
